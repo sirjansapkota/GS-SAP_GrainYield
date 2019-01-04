@@ -19,11 +19,7 @@ setwd("/Users/ssapkot/Documents/GenomicSelection1/SAP_Yield/01_Data/")
     for (i in 1:5) {
       ctemp = Y[Y$Cluster==i,]
       total = nrow(ctemp)
-      #if (!(is.integer(total))) { total = as.integer(total) +1 }
       x2 = sample(ctemp$TaxaID,38)
-      #g = rep(seq(1,5), total)
-      #g2 = g[1:length(x2)]
-      #x = split(x2, g2)
       c.list[[i]] = x2
     }
       cvf[j] <- c(c.list[[1]],c.list[[2]],c.list[[3]],c.list[[4]],c.list[[5]])
