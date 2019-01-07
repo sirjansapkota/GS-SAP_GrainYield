@@ -52,7 +52,7 @@ xval[1,1]
 
 library(ggplot2) #load the library
 
-ggplot(rsq0.5dist10kb, aes(dist, rsq)) + geom_line()
+ggplot(file, aes(dist, rsq)) + geom_line()
 
 ###calculate mean and percentage for various statistics
 mean(file$rsq, na.rm =T) ## mean of unadjusted rsquare
