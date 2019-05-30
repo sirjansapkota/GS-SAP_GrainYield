@@ -6,7 +6,7 @@ my.read.vcf <- function(file, special.char="##", ...) {
   read.table(..., text=paste(clean.lines2, collapse="\n")) # Pass the cleaned up lines to read.table
 }
 
-GBS=my.read.vcf(file= "/Users/ssapkot/Documents/GenomicSelection1/SAP_Yield/01_Data/SAP_GS_all_durra.vcf", header=TRUE, stringsAsFactors = TRUE, as.is=TRUE)
+GBS=my.read.vcf(file= "/01_Data/SAP_GS.vcf", header=TRUE, stringsAsFactors = TRUE, as.is=TRUE)
 
 ##Function Parse vcf file to convert to -1,0,1 format
 parse.GBS <- function(x) {
