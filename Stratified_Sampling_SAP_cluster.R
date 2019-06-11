@@ -1,9 +1,4 @@
-rm(list=ls())
-.libPaths(c('/Users/ssapkot/Documents/SAP/GenSel/MyRlibs',.libPaths()))
-
-Y <- read.csv('/Users/ssapkot/Documents/GenomicSelection1/SAP_Yield/SAP_GS/Sirjan_subpopulation_sampling.csv', header=T)
-
-#### Liz sample code ##################
+## read in phenotype file 'Y'
 
 cvf <- data.frame(matrix("",nrow=nrow(Y), ncol=0))
 
@@ -23,10 +18,7 @@ for (i in 1:5) {
   c.list[[i]] = x
 }
   
-## if I want c1,1
-#unname(unlist(c.list[[1]][1]))
-
-### to get 5 folds
+## to get 5 folds and assign individuals into folds
 cv.list = vector("list", 5)
 for (i in 1:5) {
   cv.list[[i]] = c(unname(unlist(c.list[[1]][i])),
@@ -37,7 +29,7 @@ for (i in 1:5) {
 }
 result = c(0, nrow(Y))
 for (i in 1:nrow(Y)) {
-  #test = c(NA, 5)
+  test = c(NA, 5)
   for (j in 1:5) {
     test[j] = Y$ID[i] %in% cv.list[[j]]
   }
@@ -49,6 +41,8 @@ cvf <- cbind(cvf,result)
 
 colnames(cvf) <- c(paste("CV_",1:100, sep=""))
 rownames(cvf) <- Y$Taxa
+
+write.csv(cvf, "cvf_CV1.csv")
 
 ###################################################
 
