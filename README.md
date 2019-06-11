@@ -3,7 +3,7 @@
 
 ## Scripts
 
-#### CV1_prediction.R
+#### CV1_prediction.R, CV2_AR_prediction.R, CV2_WR_prediction.R
 Contains R Script to implement GBLUP and cross validations using _kin.blup_ function in R (rrBLUP).
 
 #### Heterozygosity_Pegas.R
