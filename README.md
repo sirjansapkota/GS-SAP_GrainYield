@@ -1,6 +1,7 @@
-# Documentation for Sapkota et. al. 2019 (In review)
+# Documentations for Sapkota et. al. 2019 (In review)
 
 
+## Scripts
 ### CV1_prediction.R
 Contains R Script to implement GBLUP and cross validations using _kin.blup_ function in R (rrBLUP).
 
