@@ -1,4 +1,4 @@
-# Documentations for Sapkota _et. al._ 2019
+# Documentation for Sapkota _et. al._ 2019
 
 ## Data
 
@@ -21,9 +21,9 @@ R script to create a cross-validation file with individuals proportionally divid
 ### Cross-validation scripts
 R scripts used to implement GBLUP and cross validations using *kin.blup* function in R package 'rrBLUP'.
 
-* CV1_prediction.R      #
-* CV2_AR_prediction.R   #
-* CV2_WR_prediction.R   #
+* CV1_prediction.R      # proportional sampling from races
+* CV2_AR_prediction.R   # sampling from across race
+* CV2_WR_prediction.R   # sampling from within race
 
 #### MCMCglmm_CV1_vCov.R
 Fits multi-response model in MCMCglmm to calculate variance-covariance components due to conditional expectations from race.
@@ -32,6 +32,7 @@ Fits multi-response model in MCMCglmm to calculate variance-covariance component
 R script to calculate heterozygosity per site using R package 'Pegas'.
 
 #### LD_Calculation_HillandWeir.R
-Calculations for expected values of $R^2$ under drift equilibrium *Hill and Weir (1988)*. As implemented in *Remington, et al. (2001)*.
+Calculations for expected values of R^2 under drift equilibrium *Hill and Weir (1988)*. As implemented in *Remington, et al. (2001)*.
 
 #### GenomicHeritability.R
+Calculates variance components and genomic heritability
