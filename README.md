@@ -12,6 +12,9 @@
 
 ## Scripts
 
+### Package versions used
+lme4_1.1-21   MCMCglmm_2.29 ape_5.3       coda_0.19-2   Matrix_1.2-17 BGLR_1.0.8    rrBLUP_4.6
+
 #### VCF_to_genotype_matrix.R 
 This script contains the functions *my.read.vcf* to read SNP files in vcf format, and the *parse.vcf* function to create a genotype matrix (in -1,0,1 format) that can be used in the [rrBLUP](https://cran.r-project.org/web/packages/rrBLUP/index.html) package.
 
