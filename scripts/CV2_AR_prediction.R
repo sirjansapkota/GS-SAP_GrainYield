@@ -1,0 +1,129 @@
+
+.libPaths(c('/anaconda2/lib/R/library',.libPaths()))
+
+library(rrBLUP)
+library(ggplot2)
+
+my.read.vcf <- function(file, special.char="##", ...) {
+    # Making a search term that looks like: "##.*", tells R to find anything 
+    # containing the pattern "##" followed by anything (* is wildcard)
+    my.search.term <- paste0(special.char, ".*")  
+    # Replace any line containing the search term with nothing (in other words remove it)
+    clean.lines <- sub(my.search.term, "", readLines(file)) 
+    # Replace the #CHROM term in the header with CHROM, so R doesn't treat it as a special character
+    clean.lines2 <- sub("#CHROM", "CHROM", clean.lines)
+    # Pass the cleaned up lines to read.table
+    read.table(..., text=paste(clean.lines2, collapse="\n")) 
+}
+
+setwd("/Users/ssapkot/Documents/Experiments/SAP_GS_PopStr")
+Y <- read.csv('data/BLUEs_pheno_all.csv', header=T, row.names = 1)
+
+cvf <- data.frame(matrix("",nrow=65, ncol=0))
+
+Y$SN = 1:nrow(Y)
+
+for (j in 1:100){
+
+    c.list = vector("list", 5)
+
+    for (i in 1:5) {
+        ctemp = Y[Y$Cluster==i,] # subset individuals from a cluster
+        x2 = sample(ctemp$SN,13) # sample individuals randomly from a cluster and store their rowID
+        c.list[[i]] = x2
+    }
+    # Make dataframe for each cluster to a total of 100 reps
+    cvf[j] <- c(c.list[[1]],c.list[[2]],c.list[[3]],c.list[[4]],c.list[[5]])
+}
+nrow(cvf)
+
+GBS=my.read.vcf(file= "data/SAP_all_taxa.vcf", header=TRUE, stringsAsFactors = TRUE, as.is=TRUE)
+
+
+f.column <- grep("FORMAT", colnames(GBS))
+
+# Function Parse vcf file to convert to -1,0,1 format
+parse.GBS <- function(x) {
+    unique.x <- unique(x)
+    alleles <- setdiff(unique.x,union("H","N"))
+    y <- rep(0,length(x))
+    y[which(x==alleles[1])] <- -1
+    y[which(x==alleles[2])] <- 1
+    y[which(x=="N")] <- NA
+    return(y)
+}
+
+X <- apply(GBS[, -c(1:f.column)],1,parse.GBS)
+
+X[1:5,1:5]
+
+head(Y)
+
+setwd("/Users/ssapkot/Documents/Experiments/SAP_GS_PopStr/Results/Prediction_Results/WR_AR_SameTPsize/AR_Pred_Accu/")
+Total_accuracy <- vector("list",5)
+for (j in 5:12) {
+
+    for (i in 1:101) {
+        CV.fold <- paste("V",toString(i-1),sep='')
+
+        if (CV.fold == "V0") {
+            Total_Result <- c()
+            result<- c()
+        }
+        else {  
+
+            Z <- cvf[,CV.fold]
+            # sort randomly selected individuals by taxa order, and so the 
+            # pheno and geno will be in the same order when subsetted
+            Z <- sort(Z) 
+
+            X1 <- X[Z,]
+
+            A <- A.mat(X1)
+
+            rownames(A) <- 1:nrow(X1)
+            P <- Y[Z,]
+            cvs <- P$Cluster # fold is determined by cluster each individual belongs to
+
+            y = P[,j]
+            col = names(P[j])
+
+            yhat <- data.frame(cbind( y, yhat = 0))
+            yhat$yhat <- as.numeric(yhat$yhat)
+            row.names(yhat) <- row.names(y)
+
+            result <- c()
+            corr <- c()
+            var_x <- c()
+            var_y <- c()
+            cov_xy <- c()
+
+            # Make training (TRN) and testing (TST) dfs
+            tst <- which(cvs == 1) # cvs = whichever cluster/race is to be predicted
+            yNA <- y
+            # Mask yields for validation set
+            yNA[tst] <- NA 
+            # Set up dataframe with traits and genotype labels (same order as in A1) 
+            df <- data.frame(y=yNA,gid=1:nrow(A)) 
+
+            # Build rrBLUP model and save yhat for the masked values
+            # optional parameters: fixed effects, gaussian kernel, covariates
+            rrblup <- kin.blup(df,K=A,geno="gid",pheno="y") 
+            yhat$yhat[tst] = rrblup$pred[tst]
+
+            corr <- cor(yhat$y[tst],yhat$yhat[tst],use="complete")
+            var_x <- var(yhat$yhat[tst], use="complete")
+            var_y <- var(yhat$y[tst], use="complete")
+            cov_xy <- cov(yhat$y[tst],yhat$yhat[tst], use="complete")
+
+            result <- c(corr,var_x,var_y,cov_xy)
+        }
+        Total_Result <- cbind(Total_Result,result)
+
+    }
+    rownames(Total_Result) <- c("corr","var_x","var_y","cov_xy")
+
+    write.csv(Total_Result, file = paste("AR_Corr-Cov_Mixed_",col,".csv", sep=""))
+}
+
+
