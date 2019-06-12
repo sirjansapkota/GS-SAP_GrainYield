@@ -1,4 +1,4 @@
-# Documentation for Sapkota _et. al._ 2019
+# Documentation for [Sapkota *et. al*. 2019]()
 
 ## Data
 
@@ -13,26 +13,26 @@
 ## Scripts
 
 #### VCF_to_genotype_matrix.R 
-This script contains the functions *my.read.vcf* to read SNP files in vcf format, and the *parse.vcf* function to create a genotype matrix (in -1,0,1 format) that can be used in the 'rrBLUP' package.
+This script contains the functions *my.read.vcf* to read SNP files in vcf format, and the *parse.vcf* function to create a genotype matrix (in -1,0,1 format) that can be used in the [rrBLUP](https://cran.r-project.org/web/packages/rrBLUP/index.html) package.
 
 #### Stratified_Sampling_SAP_cluster.R
 R script to create a cross-validation file with individuals proportionally divided from each cluster into five equal folds.
 
 ### Cross-validation scripts
-R scripts used to implement GBLUP and cross validations using *kin.blup* function in R package 'rrBLUP'.
+R scripts used to implement GBLUP and cross validations using *kin.blup* function in R package [rrBLUP](https://cran.r-project.org/web/packages/rrBLUP/index.html).
 
 * CV1_prediction.R      # proportional sampling from races
 * CV2_AR_prediction.R   # sampling from across race
 * CV2_WR_prediction.R   # sampling from within race
 
 #### MCMCglmm_CV1_vCov.R
-Fits multi-response model in MCMCglmm to calculate variance-covariance components due to conditional expectations from race.
+Fits multi-response model in [MCMCglmm](https://cran.r-project.org/web/packages/MCMCglmm/index.html) to calculate variance-covariance components due to conditional expectations from race.
 
 #### Heterozygosity_Pegas.R
-R script to calculate heterozygosity per site using R package 'Pegas'.
+R script to calculate heterozygosity per site using R package [Pegas](https://cran.r-project.org/web/packages/pegas/index.html).
 
 #### LD_Calculation_HillandWeir.R
-Calculations for expected values of R^2 under drift equilibrium *Hill and Weir (1988)*. As implemented in *Remington, et al. (2001)*.
+Calculations for expected values of R^2 under drift equilibrium [Hill and Weir (1988)](https://www.sciencedirect.com/science/article/pii/0040580988900044). As implemented in [Remington *et al*. (2001)](https://www.pnas.org/content/98/20/11479.long).
 
 #### GenomicHeritability.R
 Calculates variance components and genomic heritability
