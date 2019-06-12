@@ -1,4 +1,4 @@
-# Documentation for [Sapkota *et. al*. 2019]()
+# Documentation for Sapkota *et. al*. 2019
 
 ## Data
 
@@ -18,7 +18,7 @@ This script contains the functions *my.read.vcf* to read SNP files in vcf format
 #### Stratified_Sampling_SAP_cluster.R
 R script to create a cross-validation file with individuals proportionally divided from each cluster into five equal folds.
 
-### Cross-validation scripts
+#### Cross-validation scripts
 R scripts used to implement GBLUP and cross validations using *kin.blup* function in R package [rrBLUP](https://cran.r-project.org/web/packages/rrBLUP/index.html).
 
 * CV1_prediction.R      # proportional sampling from races
