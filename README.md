@@ -16,6 +16,9 @@ Ancestry coefficients of five subpopulations calculated using admixture (Alexand
 #### SAP_geno-pheno.zip
 A zip file containing both genotype matrix (-1,0,1 format) and phenotypic BLUEs.
 
+## Manuscript
+Manuscript for the publication along with supplementary file. The figures and tables are embedded in the manuscript.
+
 ## Scripts
 
 ### Package versions used
