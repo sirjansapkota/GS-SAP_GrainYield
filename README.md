@@ -2,13 +2,20 @@
 
 ## Data
 
-#### BLUEs_pheno_all.csv - Best linear unbiased estimate (BLUE) phenotype data for all lines
+#### BLUEs_pheno_all.csv -
+Best linear unbiased estimate (BLUE) phenotype data for all accessions in the panel.
 |PI|Subpopulation|Cluster|Race|Origin|DTA|PH|GN|GW|GY|FLH|PL|BL|
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
 |PI152651|Caudatum|4|0|NA|66|146.61|1286|27.32|43.95|97|14.33333333|57.95|
 |PI17548|Kafir|2|0|NA|66|214.06|1167|15.62|26.66|156.8333333|22.83333333|83.41666667|
 |PI24969|Durra|3|0|NA|80|182.06|1319|29.92|50.86|162|13.33333333|41.83333333|
 |PI329435|Mixed|1|0|NA|80|95.5|1388|15.68|30.47|65.83333333|26|72.58333333|
+
+#### Qmatrix_admixture_k5.csv
+Ancestry coefficients of five subpopulations calculated using admixture (Alexandre et. al. 2009).
+
+#### SAP_geno-pheno.zip
+A zip file containing both genotype matrix (-1,0,1 format) and phenotypic BLUEs.
 
 ## Scripts
 
