@@ -2,8 +2,7 @@
 
 ## Data
 
-#### BLUEs_pheno_all.csv -
-Best linear unbiased estimate (BLUE) phenotype data for all accessions in the panel.
+#### BLUEs_pheno_all.csv - Best linear unbiased estimate (BLUE) phenotype data for all accessions in the panel.
 |PI|Subpopulation|Cluster|Race|Origin|DTA|PH|GN|GW|GY|FLH|PL|BL|
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
 |PI152651|Caudatum|4|0|NA|66|146.61|1286|27.32|43.95|97|14.33333333|57.95|
