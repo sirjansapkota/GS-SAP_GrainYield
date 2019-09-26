@@ -17,7 +17,10 @@ Ancestry coefficients of five subpopulations calculated using admixture (Alexand
 A zip file containing both genotype matrix (-1,0,1 format) and phenotypic BLUEs.
 
 ## Manuscript
-Manuscript for the publication along with supplementary file. The figures and tables are embedded in the manuscript.
+Manuscript for the publication along with supplementary file. The tables are embedded in the manuscript. The figures and equations (MathType) are included in a separate folder inside this folder.
+
+## Notebooks
+This folder contains ipython notebooks used in computation for this study.
 
 ## Scripts
 
